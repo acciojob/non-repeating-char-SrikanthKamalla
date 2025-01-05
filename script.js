@@ -1,20 +1,22 @@
-function firstNonRepeatedChar(str) {
+function firstNonRepeatedChar(s) {
  // Write your code here
-	let mp=new Map();
-	for (let char of str) {
-	    if(mp.has(char)){
-	        mp.set(char,mp.get(char)+1);
-	    }else{
-	        mp.set(char, 1);
-	    }
+	let m=new Map();
+	let n=s.length;
+	for (let i=0;i<n;i++) {
+	    let k=0;
+		if(m.get(s[i])){
+			k=m.get(s[i]);
+		}
+		m.set(s[i],k+1);
 	}
-	for (let [key, value] of mp.entries()) {
-	    if (value<2) {
-	        return key;
-	    }
+	let ans= null;
+	for(let i=0;i<n;i++){
+		if(m.get(s[i])==1){
+			ans=s[i];
+			break;
+		}
 	}
-	return "null";
-
+	return ans;
 }
 const input = prompt("Enter a string");
 alert(firstNonRepeatedChar(input)); 
